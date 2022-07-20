@@ -41,6 +41,95 @@ public class UberShop {
 
         return new int[] {min, max};
     }
+
+    public int getMinPriceCount(int[] prices) {
+        if (prices.length == 0) {
+            return 0;
+        }
+        int min = prices[0];
+        int count = 0;
+        for (int price : prices) {
+            if (price < min) {
+                min = price;
+            }
+        }
+        for (int price : prices) {
+            if (price == min) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public int[] removePrice(int[] prices, int toRemove) {
+        if (prices.length == 0) {
+            return prices;
+        }
+        int count = 0;
+        for (int price : prices) {
+            if (price == toRemove) {
+                count++;
+            }
+        }
+        int[] newPrices = new int[prices.length - count];
+        int j = 0;
+        for (int price : prices) {
+            if (price != toRemove) {
+                newPrices[j] = price;
+                j++;
+            }
+        }
+
+        return newPrices;
+    }
+
+    public int[] leavePrice9(int[] prices) {
+        if (prices.length == 0) {
+            return prices;
+        }
+        int count = 0;
+        for (int price : prices) {
+            if (price % 10 == 9) {
+                count++;
+            }
+        }
+        int[] newPrices = new int[count];
+        int j = 0;
+        for (int price : prices) {
+            if (price % 10 == 9) {
+                newPrices[j] = price;
+                j++;
+            }
+        }
+
+        return newPrices;
+    }
+
+    public String[] mergeStocks(String[] showcaseStocks, String[] warehouseStocks) {
+        String[] newStocks = new String[showcaseStocks.length + warehouseStocks.length];
+        int index = 0;
+        for (String price : showcaseStocks) {
+            newStocks[index] = price;
+            index++;
+        }
+        for (String price : warehouseStocks) {
+            newStocks[index] = price;
+            index++;
+        }
+        return newStocks;
+    }
+
+    public int getPricesSum(int[] prices, int minPrice, int maxPrice) {
+        int total = 0;
+        for (int price : prices) {
+            if (price >= minPrice && price <= maxPrice) {
+                total += price;
+            }
+        }
+
+        return total;
+    }
     //Test output
     public static void main(String[] args) {
         UberShop shop = new UberShop();
